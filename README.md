@@ -1,115 +1,122 @@
-# 📊 OpsIntel - E-commerce Operations Intelligence System
+# OpsIntel: Business Operations Intelligence Platform
 
-**OpsIntel** is a business-focused analytics and operations platform designed for Business Analysts, Product Analysts, Operations Analysts, and Data Analysts. It simulates and visualizes how enterprise e-commerce companies monitor operational efficiency, SLA performance, delivery operations, customer experience metrics, and transactional integrity.
+### Enterprise Decision Support & Operational Analytics
 
-Developed using **Python, Streamlit, SQL (SQLite), Pandas, and Plotly**, OpsIntel replicates a Power BI-style dashboard experience to enable data-driven decision-making and operational optimization.
-
----
-
-## 🚀 Key Features & Modules
-
-### 1. 📈 Executive KPI Dashboard
-Provides a premium, C-level overview of core business and operational health:
-*   **KPI Cards**: Total Orders, Total Revenue, Order Success Rate, Customer Satisfaction (CSAT), SLA Compliance, Return Rate, Failed Transactions, and Avg Delivery Time.
-*   **Trend Visualizations**: Monthly revenue charts and interactive pie charts showing order distributions by region.
-*   **Filter Engine**: Slice and dice all KPIs and charts by Region, Category, and Order Month.
-
-### 2. 📦 Order Operations Analytics
-Deep dive into order lifecycles and operational trends:
-*   **Order Status Split**: Interactive pie charts detailing orders across Delivered, Shipped, Processing, Cancelled, Returned, and Failed states.
-*   **Time-Based Analysis**: Hourly order distribution to identify peak demand times.
-*   **Cancellation & Return Analysis**: Detailed side-by-side comparison of cancellation and return rates by product category.
-*   **Live Processing Queue**: A real-time view of orders currently in "Processing" state for operations managers.
-
-### 3. ⏱️ SLA Monitoring Dashboard
-Tracks fulfillment delays, logistics performance, and delivery risks:
-*   **Logistics Benchmarking**: Bubble charts analyzing shipping volumes vs. average delivery times across partners (BlueDart, Delhivery, DTDC, FedEx, etc.).
-*   **SLA Compliance Heatmap**: A cross-matrix heatmap of SLA breach rates by Region and Category to highlight bottleneck intersections.
-*   **Breach Metrics**: Total breached orders, SLA compliance rate, and average delivery times.
-
-### 4. 💳 Returns & Transaction Intelligence
-Monitors failed transactions, refund trends, and fraud risk indicators:
-*   **Fraud Risk Profiling**: Tracks average fraud risk score across payment methods and user segments.
-*   **COD vs Prepaid Analysis**: Side-by-side comparison showing COD return rates vs. Prepaid.
-*   **Root Cause Treemaps**: Breakdown of payment failure reasons (e.g., Timeout, CVV Mismatch, OTP Failure).
-*   **High-Return Drill-Down**: Interactive Sunburst chart mapping return rates from Product Category down to Region.
-*   **Downloadable Reports**: Generate and download a filtered CSV report of recent failures/returns.
-
-### 5. 🏭 Warehouse Performance Analytics
-Compares throughput, packing speeds, and operational loads across fulfillment centers:
-*   **Composite Efficiency Score**: Calculates a custom, multi-weighted efficiency score (0-100) for each center based on delivery speed, CSAT, packing time, and SLA breaches.
-*   **Fulfillment Speed Charts**: Shows average packing times (hours) across warehouses.
-*   **Regional Radar Charts**: Polar charts visualising how regions perform against key indicators (Efficiency, CSAT, Packing Speed, Delivery Rate, SLA Compliance).
-
-### 🧠 AI Business Insights Engine
-An automated, rule-based diagnostic engine providing C-level intelligence:
-*   Dynamically identifies which warehouse drives the most SLA breaches (e.g., *“Warehouse W4 contributes to 32% of SLA breaches”*).
-*   Highlights systemic issues (e.g., *“COD orders show higher return probability”*, *“Region South shows rising fulfillment delays”*).
-*   Provides actionable operational recommendations for each diagnostic alert.
+**OpsIntel** is a professional, centralized business operations intelligence and reporting platform designed for Business Analysts, Operations Analysts, Product Analysts, and SAP Support roles. The platform acts as an interactive analytical layer over simulated enterprise e-commerce transactional data, enabling stakeholders to audit delivery lifecycles, identify dispatch bottlenecks, monitor SLA compliance, and minimize reverse-logistics exposure.
 
 ---
 
-## 🛠️ Tech Stack & Database Architecture
-*   **Frontend**: Streamlit (with corporate dark-mode/glassmorphic custom CSS styling)
-*   **Data Science**: Pandas, NumPy
-*   **Visualization**: Plotly Express, Plotly Graph Objects
-*   **Database**: SQLite with structured SQL Views:
-    *   `vw_sla_summary`: Computes regional delivery and packing statistics.
-    *   `vw_revenue_summary`: Monthly aggregated financials by category.
-    *   `vw_warehouse_perf`: Warehouse throughput, CSAT, and breach statistics.
-    *   `vw_payment_analysis`: Payment method failure and fraud-risk profiling.
+## Executive Platform Architecture
 
----
-
-## 📂 Project Structure
-```directory
-├── app.py                     # Main application landing page
-├── requirements.txt           # Project dependencies
-├── components/
-│   └── insights_engine.py     # AI Business Insights logic
-├── data/
-│   ├── generate_data.py       # Realistic 55,000+ orders generator
-│   ├── orders.csv             # Generated CSV dataset
-│   └── opsIntel.db            # SQLite database file
-├── database/
-│   └── db.py                  # SQLite configuration & SQL views
-├── pages/                     # Multi-page dashboards
-│   ├── 1_Executive_KPI_Dashboard.py
-│   ├── 2_Order_Operations_Analytics.py
-│   ├── 3_SLA_Monitoring_Dashboard.py
-│   ├── 4_Returns_Transaction_Intelligence.py
-│   ├── 5_Warehouse_Performance.py
-│   └── 6_AI_Business_Insights.py
-└── utils/
-    └── helpers.py             # Shared UI widgets and filters
+```mermaid
+graph TD
+    A[Faker Master Data Engine] -->|55,000+ Orders| B[(SQLite Database)]
+    B -->|vw_sla_summary| C[SLA & Fulfillment Monitoring]
+    B -->|vw_warehouse_perf| D[Warehouse Performance Analytics]
+    B -->|vw_payment_analysis| E[Returns & Transaction Analysis]
+    B -->|vw_revenue_summary| F[Executive Overview]
+    C & D & E & F -->|Decision Support| G[Operational Reporting & Ledger Export]
 ```
 
 ---
 
-## 🚀 How to Run locally
+## Core Analytical Modules
 
-### 1. Set Up Virtual Environment (Recommended)
-```bash
-# Create venv
-python3 -m venv venv
+The platform is structured into six clean, highly interactive reporting pages, each designed for key operational roles:
 
-# Activate venv
-source venv/bin/activate
-```
+### 1. Executive Overview
+Provides a unified view of corporate key performance indicators (KPIs) and high-level health metrics:
+*   **Metric Grid**: Flat, SAP-style KPI cards displaying total order volumes, gross realized revenue, fulfillment success rates, and customer experience indices (CSAT).
+*   **Business Observations**: Actionable highlight boards tracking supply chain issues and return exposures without informal notation or emojis.
+*   **Chronological Trends**: Spline-based visualization of gross monthly revenue and regional order contribution splits.
 
-### 2. Install Dependencies
-```bash
-pip install -r requirements.txt
-```
+### 2. Order Operations Analytics
+Delivers processing cycle reporting and transaction load tracking:
+*   **Lifecycle Splitting**: Analysis of order counts across different processing states (Delivered, Shipped, Processing, Cancelled, Returned, Failed).
+*   **Transaction Density**: Chronological load auditing across the 24-hour cycle to identify peak transaction loads.
+*   **Operational Attrition**: Comparative review of category-specific cancellation and return percentages.
 
-### 3. Generate Data & Initialize Database (Completed)
-The startup process pre-generates **55,000 orders** and sets up the SQLite views.
-```bash
-python -c "import sys; sys.path.append('.'); from data.generate_data import generate_data; from database.db import init_db; df = generate_data(); init_db(df)"
-```
+### 3. SLA & Fulfillment Monitoring
+Audits logistics partner capability and lead-time adherence:
+*   **SLA Compliance**: Detailed metrics mapping carrier turnaround times and breach rates.
+*   **Carrier Benchmarking**: Comparative analysis correlating unit volumes against mean transit cycle times.
+*   **Segment Risk Heatmap**: Pivot matrix matching regions with product categories to isolate high-risk supply corridors.
 
-### 4. Run the Streamlit Application
-```bash
-streamlit run app.py
-```
-Open [http://localhost:8501](http://localhost:8501) in your browser.
+### 4. Returns & Transaction Analysis
+Identifies gateway processing degradations and reverse-logistics overheads:
+*   **Financial Leakage**: Dynamic capture of failed checkouts, lost revenue, and mean transactional risk profiles.
+*   **Settlement Analysis**: Direct comparison of Cash-on-Delivery (COD) vs. Prepaid return rates.
+*   **Root Cause Analysis**: Treemaps of gateway failures and horizontal bar charts of customer return rationale.
+
+### 5. Warehouse Performance Analytics
+Models fulfillment center efficiency and constraints:
+*   **Fulfillment Center Indexing**: Calculates a composite **Warehouse Efficiency Rating (0-100)** incorporating throughput, SLA compliance, CSAT rating, and sorting speed.
+*   **Radar Profiling**: Polar chart benchmarking of regional warehouse performance across multiple dimensions.
+*   **Throughput Correlation**: Bubble charts mapping unit volumes, satisfaction scores, and logistics breaches.
+
+### 6. Operational Reporting
+Serves as an executive decision center and custom data extractor:
+*   **Recommended Action Plans**: Dynamic business observations with logical remediation guidelines.
+*   **Custom Ledger Exporter**: Interactive column and region filter system allowing analysts to compile custom reports and export ERP/SAP-compatible CSV spreadsheets.
+
+---
+
+## Technology Stack
+
+The platform is built upon a high-performance Python data science stack:
+*   **Main Dashboard Engine**: `Streamlit (v1.35.0)`
+*   **Data Processing**: `Pandas (v2.2.2)`, `NumPy (v1.26.4)`
+*   **Database Infrastructure**: `SQLite`, `SQLAlchemy (v2.0.30)`
+*   **Data Visualization**: `Plotly (v5.22.0)` (Express & Graph Objects)
+*   **File Exports**: `Openpyxl (v3.1.4)`
+*   **Dataset Generation**: `Faker (v25.2.0)`
+*   **Analytical Normalization**: `Scikit-Learn (v1.5.0)`
+*   **Design Customization**: Vanilla CSS styling for clean corporate grids and cards.
+
+---
+
+## Deployment & Local Installation
+
+### Prerequisites
+*   Python 3.9 or higher installed.
+
+### Setup Instructions
+1.  Clone the repository to your local system:
+    ```bash
+    git clone https://github.com/ashleshak16/Business-Operations-Intelligence-Platforms.git
+    cd Business-Operations-Intelligence-Platforms
+    ```
+
+2.  Create and activate a clean virtual environment:
+    ```bash
+    # On macOS/Linux:
+    python3 -m venv venv
+    source venv/bin/activate
+    
+    # On Windows:
+    python -m venv venv
+    venv\Scripts\activate
+    ```
+
+3.  Install dependencies:
+    ```bash
+    pip install -r requirements.txt
+    ```
+
+4.  Start the platform local server:
+    ```bash
+    streamlit run app.py
+    ```
+
+---
+
+## Cloud Deployment (Streamlit Community Cloud)
+
+This platform is configured for instant hosting:
+1.  Navigate to [share.streamlit.io](https://share.streamlit.io) and log in with your GitHub account.
+2.  Click **Create App** and select this repository: `ashleshak16/Business-Operations-Intelligence-Platforms`.
+3.  Configure **Main file path** as: `app.py`.
+4.  Click **Deploy**. On the first launch, the cloud server will automatically initialize, synthesize the 55,000+ row database, and compile the dashboard in ~15 seconds.
+
+---
+*Classification: Internal Operations | Decision Support Systems | Enterprise Analytics*
