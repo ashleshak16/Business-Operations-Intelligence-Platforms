@@ -68,9 +68,7 @@ The platform is built upon a high-performance Python data science stack:
 *   **Data Processing**: `Pandas (v2.2.2)`, `NumPy (v1.26.4)`
 *   **Database Infrastructure**: `SQLite`, `SQLAlchemy (v2.0.30)`
 *   **Data Visualization**: `Plotly (v5.22.0)` (Express & Graph Objects)
-*   **File Exports**: `Openpyxl (v3.1.4)`
 *   **Dataset Generation**: `Faker (v25.2.0)`
-*   **Analytical Normalization**: `Scikit-Learn (v1.5.0)`
 *   **Design Customization**: Vanilla CSS styling for clean corporate grids and cards.
 
 ---
