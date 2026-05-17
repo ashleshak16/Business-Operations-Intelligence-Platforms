@@ -1,0 +1,22 @@
+# Virtual Environment
+venv/
+.venv/
+env/
+ActiveEnv/
+
+# Python Cache & Compiled Code
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.pytest_cache/
+
+# Databases & Datasets (Excluded to keep repository clean, easily generated on launch)
+data/opsIntel.db
+data/orders.csv
+
+# IDE Configurations
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
